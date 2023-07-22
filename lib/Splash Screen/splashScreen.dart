@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:surge_2023_app/Auth/login.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 import '../Global Variables/Constants.dart';
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    //_navigateToNextScreen();
+    _navigateToNextScreen();
   }
   Future<bool> checkFirstTimeUser() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -24,26 +25,17 @@ class _SplashScreenState extends State<SplashScreen> {
     return isFirstTimeUser;
   }
 
-  Future<bool> LogedIn() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool isFirstTimeUser = prefs.getBool('LogedIn') ?? false;
-    return isFirstTimeUser;
-  }
+  // Future<bool> LogedIn() async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   bool isFirstTimeUser = prefs.getBool('LogedIn') ?? false;
+  //   return isFirstTimeUser;
+  // }
   Future<void> _navigateToNextScreen() async {
+    print("Navigating to next screen...");
+    await Future.delayed(Duration(seconds: 5)); // Display splash screen for 2 seconds
+    print("Navigating now!");
+    Get.to(() => LoginScreen());
 
-    await Future.delayed(Duration(seconds: 3)); // Display splash screen for 2 seconds
-    // if(await checkFirstTimeUser()){
-    //   Get.to(()=>OnboardingScreen());
-    // }else{
-    //   if(await LogedIn()){
-    //     Get.to(()=>Home(passedIndex: 0));
-    //   }
-    //   else {
-    //     Get.to(() => LoginPage());
-    //   }
-    //
-    // }
-    // Navigate to onboarding screen
   }
 
   @override

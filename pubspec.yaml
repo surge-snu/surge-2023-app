@@ -46,6 +46,7 @@ dependencies:
   dropdown_textfield: ^1.0.2
   searchfield: ^0.8.0
   widget_and_text_animator: ^1.0.9
+  google_fonts: ^5.1.0
 
 dev_dependencies:
   flutter_test:
