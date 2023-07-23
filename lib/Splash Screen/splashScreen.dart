@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:surge_2023_app/Auth/login.dart';
+import 'package:surge_2023_app/Utils/Navigator.dart';
 import 'package:widget_and_text_animator/widget_and_text_animator.dart';
 
 import '../Global Variables/Constants.dart';
@@ -34,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen> {
     print("Navigating to next screen...");
     await Future.delayed(Duration(seconds: 5)); // Display splash screen for 2 seconds
     print("Navigating now!");
-    Get.to(() => LoginScreen());
+    Get.to(() => NavBar(passedIndex: 0));
 
   }
 
