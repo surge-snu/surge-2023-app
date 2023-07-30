@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
@@ -18,6 +20,7 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
+
   // Function to open the URL
   void _openURL(String url) async {
     if (await canLaunch(url)) {
@@ -31,22 +34,20 @@ class _NavBarState extends State<NavBar> {
   final screens = [
     const HomePage(),
     Profile(),
-    // const MyHomePage(),
-    // const QuestionPage(),
-    // const Announcmentpage(),
-    // const ProfilePage()
+
     ContactUs(),
     ContactUs(),
   ];
 
   @override
   Widget build(BuildContext context) {
+    print('passed ${widget.passedIndex}');
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
         height: MediaQuery.of(context).size.height,
 
-            child: _selectedIndex!=-1?screens[_selectedIndex]:screens[widget.passedIndex],
+            child: screens[widget.passedIndex],
           ),
 
 
@@ -84,7 +85,7 @@ margin: EdgeInsets.only(top: 50),
                   _openURL(websiteURL);
                 }else {
                   setState(() {
-                    _selectedIndex= index;
+                  widget.passedIndex= index;
 
                   });
                 }
@@ -102,5 +103,6 @@ items: [
         ),
       ),
     );
+
   }
 }

@@ -1,6 +1,9 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:surge_2023_app/Global%20Variables/Constants.dart';
+import 'package:surge_2023_app/Utils/Navigator.dart';
 
 class CustomAppBar extends StatefulWidget {
   final String heading;
@@ -25,8 +28,13 @@ class _CustomAppBarState extends State<CustomAppBar> {
             children: [
          InkWell(
            onTap:(){
-             Navigator.pop(context);
-          },
+             print('navigating');
+
+              Navigator.push(context, MaterialPageRoute(builder: (c)=>NavBar(passedIndex: 0)));
+
+
+        print('navigated');
+                      },
 
                   child: Icon(Icons.keyboard_arrow_left_rounded,color: AppColors.primaryColor,size: 45,)),
               SizedBox(width: 10,),
