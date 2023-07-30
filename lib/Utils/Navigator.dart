@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:surge_2023_app/Profile/profile.dart';
 import 'package:surge_2023_app/contact/contactus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -26,10 +27,10 @@ class _NavBarState extends State<NavBar> {
     }
   }
 
-  int _selectedIndex=0;
+  int _selectedIndex=-1;
   final screens = [
     const HomePage(),
-    const LoginScreen(),
+    Profile(),
     // const MyHomePage(),
     // const QuestionPage(),
     // const Announcmentpage(),
@@ -45,7 +46,7 @@ class _NavBarState extends State<NavBar> {
       body: Container(
         height: MediaQuery.of(context).size.height,
 
-            child: screens[widget.passedIndex],
+            child: _selectedIndex!=-1?screens[_selectedIndex]:screens[widget.passedIndex],
           ),
 
 
@@ -68,21 +69,26 @@ margin: EdgeInsets.only(top: 50),
           child: Padding(
             padding:  EdgeInsets.only(top: 13.0),
             child: BottomNavigationBar(
-              selectedItemColor: Colors.white,
+
 
               iconSize: 30,
-              unselectedItemColor: AppColors.primaryColor,
+
               type: BottomNavigationBarType.fixed,
+
               backgroundColor: Colors.black,
+              selectedItemColor: Colors.white,
+              unselectedItemColor: AppColors.primaryColor,
               onTap: (index){
                 if(index==2){
                   String websiteURL = 'https://snuxplore.com/'; // Replace with your desired URL
                   _openURL(websiteURL);
                 }else {
                   setState(() {
-                    widget.passedIndex = index;
+                    _selectedIndex= index;
+
                   });
                 }
+
               },
 items: [
   BottomNavigationBarItem(icon: Icon(Icons.message,),label: 'QUERIES'),

@@ -18,7 +18,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        //width: double.infinity,
+        width: double.infinity,
         child: Column(
 
           children: [
@@ -46,22 +46,22 @@ color:  !open?widget.maincolor:null ,
 
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Icon(widget.mainIcon,color: Colors.white,size: 45,weight:30 ),
-                        ),
-                        SizedBox(width: MediaQuery.sizeOf(context).width*0.03),
-                        Text(
-                          widget.mainText,style: TextStyle(fontWeight: FontWeight.w400,fontSize: 30,color: Colors.white),
-                        ),
+                    Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(widget.mainIcon,color:widget.maincolor==AppColors.primaryColor?Colors.black: Colors.white,size: 45,weight:30 ),
+                          //SizedBox(width: MediaQuery.sizeOf(context).width*0.03),
+                          Text(
+                            widget.mainText,style: TextStyle(fontWeight: FontWeight.w400,fontSize: 30,color:widget.maincolor==AppColors.primaryColor?Colors.black: Colors.white),
+                        textAlign: TextAlign.right,  ),
 
-                        SizedBox(width: MediaQuery.sizeOf(context).width*0.13),
-                        Icon(Icons.expand_circle_down,color: AppColors.primaryColor ,size: 45,),
+                          //SizedBox(width: MediaQuery.sizeOf(context).width*0.13),
+                          Icon(open?Icons.keyboard_arrow_up:Icons.keyboard_arrow_down,color: widget.maincolor==AppColors.primaryColor?Colors.black: Colors.white ,size: 45,),
 
-                      ],
+                        ],
+                      ),
                     ),
                     if(open)Container(
 
