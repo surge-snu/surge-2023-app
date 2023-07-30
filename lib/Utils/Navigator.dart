@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:surge_2023_app/contact/contactus.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 import 'package:surge_2023_app/Auth/login.dart';
 import 'package:surge_2023_app/Global%20Variables/Constants.dart';
 import 'package:surge_2023_app/Home/HomePage.dart';
@@ -14,14 +17,25 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
+  // Function to open the URL
+  void _openURL(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   int _selectedIndex=0;
   final screens = [
     const HomePage(),
-    const LoginScreen()
+    const LoginScreen(),
     // const MyHomePage(),
     // const QuestionPage(),
     // const Announcmentpage(),
     // const ProfilePage()
+    ContactUs(),
+    ContactUs(),
   ];
 
   @override
@@ -61,10 +75,14 @@ margin: EdgeInsets.only(top: 50),
               type: BottomNavigationBarType.fixed,
               backgroundColor: Colors.black,
               onTap: (index){
-                setState(() {
-                  widget.passedIndex=index;
-                });
-
+                if(index==2){
+                  String websiteURL = 'https://snuxplore.com/'; // Replace with your desired URL
+                  _openURL(websiteURL);
+                }else {
+                  setState(() {
+                    widget.passedIndex = index;
+                  });
+                }
               },
 items: [
   BottomNavigationBarItem(icon: Icon(Icons.message,),label: 'QUERIES'),

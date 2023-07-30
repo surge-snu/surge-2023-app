@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:surge_2023_app/Auth/login.dart';
+import 'package:surge_2023_app/contact/contactus.dart';
 
 import 'Splash Screen/splashScreen.dart';
 
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
 
       ),
-      home: SplashScreen(),
+      home: ContactUs(),
     );
   }
 }
