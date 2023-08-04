@@ -16,32 +16,34 @@ class CustomAppBar extends StatefulWidget {
 class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.sizeOf(context).height*0.15,
-      child: Stack(
-        children: [
-          Image.asset('assets/appbarback.png'),
-          Positioned(
-              left: 10,
-              top: 40,
-              child: Row(
-            children: [
-         InkWell(
-           onTap:(){
-             print('navigating');
+    return SafeArea(
+      child: Container(
+        height: MediaQuery.sizeOf(context).height*0.15,
+        child: Stack(
+          children: [
+            Image.asset('assets/appbarback.png'),
+            Positioned(
+                left: 10,
+                top: 40,
+                child: Row(
+              children: [
+           InkWell(
+             onTap:(){
+               print('navigating');
 
-              Navigator.push(context, MaterialPageRoute(builder: (c)=>NavBar(passedIndex: 0)));
+                Navigator.push(context, MaterialPageRoute(builder: (c)=>NavBar(passedIndex: 0)));
 
 
-        print('navigated');
-                      },
+          print('navigated');
+                        },
 
-                  child: Icon(Icons.keyboard_arrow_left_rounded,color: AppColors.primaryColor,size: 45,)),
-              SizedBox(width: 10,),
-              Text(widget.heading,style: TextStyle(color: AppColors.primaryColor,fontSize: 30,fontWeight: FontWeight.w700),)
-            ],
-          ))
-        ],
+                    child: Icon(Icons.keyboard_arrow_left_rounded,color: AppColors.primaryColor,size: 45,)),
+                SizedBox(width: 10,),
+                Text(widget.heading,style: TextStyle(color: AppColors.primaryColor,fontSize: 30,fontWeight: FontWeight.w700),)
+              ],
+            ))
+          ],
+        ),
       ),
     );
   }

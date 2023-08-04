@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:surge_2023_app/Map/mapSnuExplore.dart';
 import 'package:surge_2023_app/Profile/profile.dart';
+import 'package:surge_2023_app/Queries/Query.dart';
 import 'package:surge_2023_app/contact/contactus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -44,9 +46,10 @@ class _NavBarState extends State<NavBar> {
   }
 
   final screens = [
-    const HomePage(),
+   // const HomePage(),
+    const Query(),
     const Profile(),
-    const ContactUs(),
+    const MapExplore(),
     const ContactUs(),
   ];
 
@@ -57,12 +60,12 @@ class _NavBarState extends State<NavBar> {
       backgroundColor: Colors.black,
       body: Container(
         height: MediaQuery.of(context).size.height,
-        child: screens[widget.passedIndex],
+        child: screens[_selectedIndex],
       ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(left: 15.0, right: 15),
         child: Container(
-            margin: const EdgeInsets.only(top: 50),
+
             height: 100,
             width: MediaQuery.of(context).size.width,
             // padding: EdgeInsets.only(left: 6,right: 6),
@@ -72,7 +75,7 @@ class _NavBarState extends State<NavBar> {
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(color: AppColors.primaryColor, width: 2.9)),
             child: Padding(
-              padding: const EdgeInsets.only(top: 13.0),
+              padding: const EdgeInsets.only(top: 4.0),
               child: BottomNavigationBar(
                 iconSize: 30,
                 type: BottomNavigationBarType.fixed,

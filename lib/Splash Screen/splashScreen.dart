@@ -35,7 +35,11 @@ class _SplashScreenState extends State<SplashScreen> {
     print("Navigating to next screen...");
     await Future.delayed(Duration(seconds: 5)); // Display splash screen for 2 seconds
     print("Navigating now!");
-    Get.to(() => NavBar(passedIndex: 0));
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => NavBar(passedIndex: 0)),
+    );
+
 
   }
 
