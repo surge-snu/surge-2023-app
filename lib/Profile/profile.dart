@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:surge_2023_app/Auth/changePassword.dart';
 import 'package:surge_2023_app/Utils/CustomAppbar.dart';
 
 import '../Global Variables/Constants.dart';
@@ -100,18 +103,20 @@ class _ProfileState extends State<Profile> {
                       Text('Your Name',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700,fontSize: 23),),
 SizedBox(height: MediaQuery.sizeOf(context).height*0.01,),
                       Text('Shiv Nadar University',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 23),),
-                      SizedBox(height: MediaQuery.sizeOf(context).height*0.09,),
+                      SizedBox(height: MediaQuery.sizeOf(context).height*0.05,),
                       Text('Payment Status',style: TextStyle(color: AppColors.primaryColor ,fontWeight: FontWeight.w600,fontSize: 25),),
                       SizedBox(height: MediaQuery.sizeOf(context).height*0.01,),
                       Text('Under Process',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 23),),
-                      SizedBox(height: MediaQuery.sizeOf(context).height*0.05,),
+                      SizedBox(height: MediaQuery.sizeOf(context).height*0.03,),
                       Text('Accomodation',style: TextStyle(color: AppColors.primaryColor ,fontWeight: FontWeight.w600,fontSize: 25),),
                       SizedBox(height: MediaQuery.sizeOf(context).height*0.01,),
                       Text('3 Nights',style: TextStyle(color: Colors.white,fontWeight: FontWeight.w400,fontSize: 23),),
-                      SizedBox(height: MediaQuery.sizeOf(context).height*0.1,),
+                      SizedBox(height: MediaQuery.sizeOf(context).height*0.05,),
+
                       InkWell(
                         onTap: (){
                           // manage change password on Tap
+                          Get.to(()=>ChangePassword());
                         },
                         child: Container(
                           height: 40,

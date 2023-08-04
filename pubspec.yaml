@@ -51,6 +51,7 @@ dependencies:
   line_icons: ^2.0.3
   url_launcher: ^6.1.12
   dropdown_button2: ^2.3.7
+  flutter_otp_text_field: ^1.1.1
 
 dev_dependencies:
   flutter_test:
