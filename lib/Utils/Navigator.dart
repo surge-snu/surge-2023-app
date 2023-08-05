@@ -21,28 +21,18 @@ class NavBar extends StatefulWidget {
 
 class _NavBarState extends State<NavBar> {
   // Function to open the URL
-  void _openURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+
 
   int _selectedIndex = 0;
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
-    if (index == 2) {
-      String websiteURL =
-          'https://snuxplore.com/'; // Replace with your desired URL
-      _openURL(websiteURL);
-    } else {
+
       setState(() {
         widget.passedIndex = index;
       });
-    }
+
   }
 
   final screens = [

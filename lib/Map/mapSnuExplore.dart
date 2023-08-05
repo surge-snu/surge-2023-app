@@ -14,9 +14,11 @@ class _MapExploreState extends State<MapExplore> {
   String websiteURL =
       'https://snuxplore.com/';
   Future<void> _openURL(String url) async {
-
+    if (await canLaunch(url)) {
       await launch(url);
-
+    } else {
+      throw 'Could not launch $url';
+    }
   }
   @override
   void initState() {
