@@ -26,18 +26,19 @@ class _SplashScreenState extends State<SplashScreen> {
     return isFirstTimeUser;
   }
 
-  // Future<bool> LogedIn() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   bool isFirstTimeUser = prefs.getBool('LogedIn') ?? false;
-  //   return isFirstTimeUser;
-  // }
+  Future<bool> LogedIn() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstTimeUser = prefs.getBool('LogedIn') ?? false;
+    return isFirstTimeUser;
+  }
   Future<void> _navigateToNextScreen() async {
     print("Navigating to next screen...");
     await Future.delayed(Duration(seconds: 5)); // Display splash screen for 2 seconds
     print("Navigating now!");
+
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => NavBar(passedIndex: 0)),
+      MaterialPageRoute(builder: (context) => LoginScreen()),
     );
 
 

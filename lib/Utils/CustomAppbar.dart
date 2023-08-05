@@ -30,8 +30,12 @@ class _CustomAppBarState extends State<CustomAppBar> {
            InkWell(
              onTap:(){
                print('navigating');
+if(widget.heading=="Change Password"){
+  Navigator.pop(context);
+}else{
+  Navigator.push(context, MaterialPageRoute(builder: (c)=>NavBar(passedIndex: 0)));
+}
 
-                Navigator.push(context, MaterialPageRoute(builder: (c)=>NavBar(passedIndex: 0)));
 
 
           print('navigated');

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:surge_2023_app/Global%20Variables/Constants.dart';
+import 'package:surge_2023_app/Home/HomePage.dart';
+import 'package:surge_2023_app/Utils/Navigator.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -131,7 +133,7 @@ SizedBox(height: 35,),
             SizedBox(height: 35,),
             InkWell(
                 onTap: (){
-
+Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavBar(passedIndex: 0)));
                 },
                 child: Text("Continue as guest",style: GoogleFonts.poppins(textStyle: TextStyle(decoration:TextDecoration.underline,color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400))))
 

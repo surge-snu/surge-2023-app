@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 
         // This is the theme of your application.
 
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }

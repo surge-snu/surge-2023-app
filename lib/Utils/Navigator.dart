@@ -36,7 +36,7 @@ class _NavBarState extends State<NavBar> {
   }
 
   final screens = [
-   // const HomePage(),
+   const HomePage(),
     const Query(),
     const Profile(),
     const MapExplore(),
@@ -45,7 +45,7 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    print('passed ${widget.passedIndex}');
+   // print('passed ${widget.passedIndex}');
     return Scaffold(
       backgroundColor: Colors.black,
       body: Container(
@@ -53,10 +53,10 @@ class _NavBarState extends State<NavBar> {
         child: screens[_selectedIndex],
       ),
       bottomNavigationBar: Padding(
-        padding: const EdgeInsets.only(left: 15.0, right: 15),
+        padding: const EdgeInsets.only(left: 9, right: 9,bottom: 3),
         child: Container(
 
-            height: 100,
+            height: MediaQuery.sizeOf(context).height*0.1,
             width: MediaQuery.of(context).size.width,
             // padding: EdgeInsets.only(left: 6,right: 6),
             //  margin: EdgeInsets.only(left: 17,right: 17),
@@ -75,6 +75,12 @@ class _NavBarState extends State<NavBar> {
                 currentIndex: _selectedIndex,
                 onTap: _onItemTapped,
                 items: const [
+                  BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.home,
+                    ),
+                    label: 'HOME',
+                  ),
                   BottomNavigationBarItem(
                     icon: Icon(
                       Icons.message,
