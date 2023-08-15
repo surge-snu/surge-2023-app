@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "332975599337",
+    "project_id": "surge-2023-d97f9",
+    "storage_bucket": "surge-2023-d97f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:332975599337:android:7bed4c93955365d5510a78",
+        "android_client_info": {
+          "package_name": "com.example.surge_2023_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "332975599337-o8dj67f2hi2mq3a1plu1j31a13tvbbgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDALAm-4H9i2ildWsMQZq1UR4qHRqxwenY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "332975599337-o8dj67f2hi2mq3a1plu1j31a13tvbbgs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
