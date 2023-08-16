@@ -99,14 +99,17 @@ class _QueryState extends State<Query> {
   }
 
   void _addQuery() {
+
     setState(() {
       loading= true;
     });
+    getUserInfo();
     String category = selectedValue;
     String description = _descriptionController.text;
 if(uid!=""&&email!="") {
   if (category.isNotEmpty && description.isNotEmpty) {
-    _firestore.collection('Queries').add({
+    _firestore.collection('Queries').doc(uid).set({
+      'email':email,
       'category': category,
       'description': description,
     });
