@@ -1,12 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:surge_2023_app/Auth/signUp.dart';
 import 'package:surge_2023_app/Global%20Variables/Constants.dart';
 import 'package:surge_2023_app/Home/HomePage.dart';
 import 'package:surge_2023_app/Utils/Navigator.dart';
+
+import 'changePassword.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -238,7 +242,7 @@ SizedBox(height: 35,),
               ),
               SizedBox(height: 35,),
 
-
+// Login Button
               InkWell(
                 onTap: (){
 loginUser();
@@ -259,18 +263,42 @@ loginUser();
 
                 ),
               ),
-              SizedBox(height: 35,),
+              SizedBox(height: 25,),
+              // Change Password  Button
+              InkWell(
+                onTap: (){
+                  Get.to(()=>ChangePassword());
+                },
+                child: Container(
+                  margin: EdgeInsets.only(left: 55,right: 55),
+                  height: 40,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.black,
+
+                    borderRadius:
+                    BorderRadius.circular(25),
+
+                  ),
+                  child: Center(child: Text("Forgot Password",style: GoogleFonts.poppins(textStyle: TextStyle(decoration:TextDecoration.underline
+                      ,color: AppColors.primaryColor,fontSize: 20,fontWeight: FontWeight.w400)))),
+
+                ),
+              ),
+              SizedBox(height: 25,),
+              //Sign Up Button
               InkWell(
                   onTap: (){
                     Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>SignUpScreen()));
                   },
                   child: Text("SignUp",style: GoogleFonts.poppins(textStyle: TextStyle(decoration:TextDecoration.underline,color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400)))),
-              SizedBox(height: 35,),
+              SizedBox(height: 25,),
+              // Continue as guest button
               InkWell(
                   onTap: (){
 Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavBar(passedIndex: 0)));
                   },
-                  child: Text("Continue as guest",style: GoogleFonts.poppins(textStyle: TextStyle(decoration:TextDecoration.underline,color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400))))
+                  child: Text("Continue as guest",style: GoogleFonts.poppins(textStyle: TextStyle(decoration:TextDecoration.underline,color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400)))),
 
             ],
           ),

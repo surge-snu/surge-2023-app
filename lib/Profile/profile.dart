@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:surge_2023_app/Auth/changePassword.dart';
+import 'package:surge_2023_app/Auth/login.dart';
 import 'package:surge_2023_app/Utils/CustomAppbar.dart';
 
 import '../Global Variables/Constants.dart';
@@ -131,7 +133,18 @@ class _ProfileState extends State<Profile> {
 
 
 
+Future<void> logoutUser()async{
+  await FirebaseAuth.instance.signOut().then((value) async {//delete uid from getstorage.
 
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('LogedIn', false);
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) =>  LoginScreen()),
+          (route) => false, // Remove all routes until now.
+    );
+  });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -242,16 +255,16 @@ SizedBox(height: MediaQuery.sizeOf(context).height*0.01,),
                       InkWell(
                         onTap: (){
                           // manage change password on Tap
-                          Get.to(()=>ChangePassword());
+                        logoutUser();
                         },
                         child: Container(
                           height: 40,
                           width: MediaQuery.sizeOf(context).width*0.76,
                           decoration: BoxDecoration(
-                            color: AppColors.primaryColor,
-                            borderRadius: BorderRadius.circular(15)
+                              color: AppColors.primaryColor,
+                              borderRadius: BorderRadius.circular(15)
                           ),
-                     child: Center(child: Text('Change Password',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 14),)),
+                          child: Center(child: Text('Logout',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 14),)),
                         ),
                       )
                     ],
