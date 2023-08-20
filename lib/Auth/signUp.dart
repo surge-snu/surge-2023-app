@@ -21,15 +21,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final _nameController = TextEditingController();
   final _phoneNumberController = TextEditingController();
   final _universityController = TextEditingController();
-  late FToast  flutterToast;
-bool loading = false;
+  late FToast flutterToast;
+  bool loading = false;
   @override
   void initState() {
     super.initState();
-    flutterToast= FToast();
+    flutterToast = FToast();
     // if you want to use context from globally instead of content we need to pass navigatorKey.currentContext!
     flutterToast.init(context);
   }
+
 // function to show toast message for verification link
   _showToast(String s) {
     Widget toast = Container(
@@ -38,7 +39,7 @@ bool loading = false;
         borderRadius: BorderRadius.circular(25.0),
         color: Colors.greenAccent,
       ),
-      child:Row(
+      child: Row(
         children: [
           Icon(Icons.mail),
           SizedBox(width: 6.0),
@@ -59,9 +60,7 @@ bool loading = false;
           ),
         ],
       ),
-
     );
-
 
     flutterToast.showToast(
       child: toast,
@@ -81,14 +80,16 @@ bool loading = false;
           );
         });
   }
+
   // Function to create a new user in Firebase Authentication and store additional info in Firestore
   Future<void> signUpAndStoreUserData() async {
     setState(() {
-      loading= true;
+      loading = true;
     });
     try {
       // Create a new user in Firebase Authentication
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
@@ -107,7 +108,8 @@ bool loading = false;
       });
 
       // Navigate to the home screen or perform other actions
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => LoginScreen()));
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (_) => LoginScreen()));
     } catch (e) {
       // Handle errors
       _showToast(e.toString());
@@ -116,283 +118,264 @@ bool loading = false;
     setState(() {
       // Show a toast message
       _showToast("Verification link has been sent to your email");
-      loading=false;
+      loading = false;
     });
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body:loading?Center(
-    child: Container(
-    padding: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height * 0.1),
-    child: const CircularProgressIndicator(
-    color: Colors.black,
-    ),
-    ),
-    ): SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
-        child: Center(
-          child: Column(
-            children: [
-
-              SizedBox(height: 90,),
-              Container(height: 60,width: 360,
-
-                child: Center(
-                  child: Text("Sign Up",style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.w900,fontFamily: 'Poppins'),),
-                ),),
-
-              // Name text filed
-              SizedBox(height: 45,),
-              Container(
-                margin: EdgeInsets.only(left: 55,right: 55),
-                height: 40,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  border: Border.all(
-                      width: 2,
-                      color: Colors.black),
-                  borderRadius:
-                  BorderRadius.circular(25),
-
+      body: loading
+          ? Center(
+              child: Container(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.1),
+                child: const CircularProgressIndicator(
+                  color: Colors.black,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: TextFormField(
-                    controller: _nameController,
-
-
-
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 10),
-                      fillColor: AppColors.primaryColor,
-                      filled: true,
-                      // errorStyle: TextStyle(height: 0.5),
-                      hintStyle: TextStyle(color: Color(0xB310100E)),
-                      hintText: 'Name',
-                      border: OutlineInputBorder(
-                          borderRadius:
-                          BorderRadius.circular(25),
-                          borderSide:  BorderSide.none
-
+              ),
+            )
+          : SingleChildScrollView(
+              physics: NeverScrollableScrollPhysics(),
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: height * .15,
+                    ),
+                    Container(
+                      height: 60,
+                      width: 360,
+                      child: const Center(
+                        child: Text(
+                          "Sign Up",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w900,
+                              fontFamily: 'Poppins'),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
 
-              // Phone Number text field
-              SizedBox(height: 25,),
-              Container(
-                margin: EdgeInsets.only(left: 55,right: 55),
-                height: 40,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  border: Border.all(
-                      width: 2,
-                      color: Colors.black),
-                  borderRadius:
-                  BorderRadius.circular(25),
-
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.number,
-                    controller: _phoneNumberController,
-
-
-
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-
-                      contentPadding: EdgeInsets.symmetric(vertical: 10),
-                      fillColor: AppColors.primaryColor,
-                      filled: true,
-                      // errorStyle: TextStyle(height: 0.5),
-                      hintStyle: TextStyle(color: Color(0xB310100E)),
-
-                      hintText: 'Phone Number',
-                      border: OutlineInputBorder(
-                          borderRadius:
-                          BorderRadius.circular(25),
-                          borderSide:  BorderSide.none
-
+                    // Name text filed
+                    SizedBox(
+                      height: height * .04,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 55, right: 55),
+                      height: 40,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        border: Border.all(width: 2, color: Colors.black),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 18.0),
+                        child: TextFormField(
+                          controller: _nameController,
+                          textAlign: TextAlign.left,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            fillColor: AppColors.primaryColor,
+                            filled: true,
+                            // errorStyle: TextStyle(height: 0.5),
+                            hintStyle: TextStyle(color: Color(0xB310100E)),
+                            hintText: 'Name',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide.none),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
 
+                    // Phone Number text field
+                    SizedBox(
+                      height: height * .025,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 55, right: 55),
+                      height: 40,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        border: Border.all(width: 2, color: Colors.black),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 18.0),
+                        child: TextFormField(
+                          keyboardType: TextInputType.number,
+                          controller: _phoneNumberController,
+                          textAlign: TextAlign.left,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            fillColor: AppColors.primaryColor,
+                            filled: true,
+                            // errorStyle: TextStyle(height: 0.5),
+                            hintStyle: TextStyle(color: Color(0xB310100E)),
 
-              // University  text filed
-              SizedBox(height: 25,),
-              Container(
-                margin: EdgeInsets.only(left: 55,right: 55),
-                height: 40,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  border: Border.all(
-                      width: 2,
-                      color: Colors.black),
-                  borderRadius:
-                  BorderRadius.circular(25),
-
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: TextFormField(
-
-                    controller: _universityController,
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 10),
-                      fillColor: AppColors.primaryColor,
-                      filled: true,
-                      // errorStyle: TextStyle(height: 0.5),
-                      hintStyle: TextStyle(color: Color(0xB310100E)),
-                      hintText: 'University',
-                      border: OutlineInputBorder(
-                          borderRadius:
-                          BorderRadius.circular(25),
-                          borderSide:  BorderSide.none
-
+                            hintText: 'Phone Number',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide.none),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
 
-
-              // Email text filed
-              SizedBox(height: 25,),
-              Container(
-                margin: EdgeInsets.only(left: 55,right: 55),
-                height: 40,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  border: Border.all(
-                      width: 2,
-                      color: Colors.black),
-                  borderRadius:
-                  BorderRadius.circular(25),
-
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: TextFormField(
-
-                    controller: _emailController,
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 10),
-                      fillColor: AppColors.primaryColor,
-                      filled: true,
-                      // errorStyle: TextStyle(height: 0.5),
-                      hintStyle: TextStyle(color: Color(0xB310100E)),
-                      hintText: 'Email',
-                      border: OutlineInputBorder(
-                          borderRadius:
-                          BorderRadius.circular(25),
-                          borderSide:  BorderSide.none
-
+                    // University  text filed
+                    SizedBox(
+                      height: height * .025,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 55, right: 55),
+                      height: 40,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        border: Border.all(width: 2, color: Colors.black),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 18.0),
+                        child: TextFormField(
+                          controller: _universityController,
+                          textAlign: TextAlign.left,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            fillColor: AppColors.primaryColor,
+                            filled: true,
+                            // errorStyle: TextStyle(height: 0.5),
+                            hintStyle: TextStyle(color: Color(0xB310100E)),
+                            hintText: 'University',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide.none),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
 
-
-              // password text fild
-              SizedBox(height: 25,),
-              Container(
-                margin: EdgeInsets.only(left: 55,right: 55),
-                height: 40,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  border: Border.all(
-                      width: 2,
-                      color: Colors.black),
-                  borderRadius:
-                  BorderRadius.circular(25),
-
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: TextFormField(
-
-                    controller: _passwordController,
-
-
-
-                    textAlign: TextAlign.left,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 10),
-                      fillColor: AppColors.primaryColor,
-                      filled: true,
-
-                      hintStyle: TextStyle(color: Color(0xB310100E)),
-                      hintText: 'Password',
-                      border: OutlineInputBorder(
-                          borderRadius:
-                          BorderRadius.circular(25),
-                          borderSide:  BorderSide.none
-
+                    // Email text filed
+                    SizedBox(
+                      height: height * .025,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 55, right: 55),
+                      height: 40,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        border: Border.all(width: 2, color: Colors.black),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 18.0),
+                        child: TextFormField(
+                          controller: _emailController,
+                          textAlign: TextAlign.left,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            fillColor: AppColors.primaryColor,
+                            filled: true,
+                            // errorStyle: TextStyle(height: 0.5),
+                            hintStyle: TextStyle(color: Color(0xB310100E)),
+                            hintText: 'Email',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide.none),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+
+                    // password text fild
+                    SizedBox(
+                      height: height * .025,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(left: 55, right: 55),
+                      height: 40,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        border: Border.all(width: 2, color: Colors.black),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 18.0),
+                        child: TextFormField(
+                          controller: _passwordController,
+                          textAlign: TextAlign.left,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            fillColor: AppColors.primaryColor,
+                            filled: true,
+                            hintStyle: TextStyle(color: Color(0xB310100E)),
+                            hintText: 'Password',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide.none),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * .025,
+                    ),
+
+                    // Signup Button
+                    InkWell(
+                      onTap: () {
+                        signUpAndStoreUserData(); // Call the new function when Sign Up button is tapped
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(left: 55, right: 55),
+                        height: 40,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Center(
+                            child: Text("Sign Up",
+                                style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700)))),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * .035,
+                    ),
+
+                    // COntinue as Guest Button
+                    InkWell(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => NavBar(passedIndex: 0)));
+                        },
+                        child: Text("Continue as guest",
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                                    decoration: TextDecoration.underline,
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w400))))
+                  ],
                 ),
               ),
-              SizedBox(height: 25,),
-
-
-              // Signup Button
-              InkWell(
-                onTap: (){
-                  signUpAndStoreUserData(); // Call the new function when Sign Up button is tapped
-                },
-                child: Container(
-                  margin: EdgeInsets.only(left: 55,right: 55),
-                  height: 40,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-
-                    borderRadius:
-                    BorderRadius.circular(25),
-
-                  ),
-                  child: Center(child: Text("Sign Up",style: GoogleFonts.poppins(textStyle: TextStyle(decoration:TextDecoration.underline
-                      ,color: AppColors.primaryColor,fontSize: 20,fontWeight: FontWeight.w400)))),
-
-                ),
-              ),
-              SizedBox(height: 35,),
-
-              // COntinue as Guest Button
-              InkWell(
-                  onTap: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavBar(passedIndex: 0)));
-                  },
-                  child: Text("Continue as guest",style: GoogleFonts.poppins(textStyle: TextStyle(decoration:TextDecoration.underline,color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400))))
-
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }
