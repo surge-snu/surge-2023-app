@@ -13,27 +13,51 @@ class ContactUs extends StatefulWidget {
 class _ContactUsState extends State<ContactUs> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: PreferredSize(
-        preferredSize: Size(MediaQuery.sizeOf(context).width,MediaQuery.sizeOf(context).height*0.15),
-        child: CustomAppBar(heading: 'Contact Us',),
-      ),
-      body: Container(
-
-        child: const Padding(
-          padding: EdgeInsets.only(left: 8.0,right: 8,top: 17),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start ,
-            children:[ CustomDropDown(maincolor: Color(0xffF51940),mainText: 'Emergency',mainIcon: Icons.add),
-              SizedBox(height: 14,),
-              CustomDropDown(maincolor: AppColors.primaryColor,mainText: 'Organizing Team',mainIcon: Icons.people_alt_rounded),
-              SizedBox(height: 14,),
-              CustomDropDown(maincolor: AppColors.primaryColor,mainText: 'Point of Contact',mainIcon: Icons.person),
-            ]
+        backgroundColor: Colors.black,
+        appBar: PreferredSize(
+          preferredSize: Size(MediaQuery.sizeOf(context).width,
+              MediaQuery.sizeOf(context).height * 0.15),
+          child: CustomAppBar(
+            heading: 'Contact Us',
           ),
         ),
-      )
-    );
+        body: Container(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  left: width * .08,
+                  right: width * .08,
+                  top: height * .03,
+                  bottom: height * .03),
+              child:
+                  Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+                SizedBox(
+                  height: height * .025,
+                ),
+                CustomDropDown(
+                    maincolor: Color(0xffF51940),
+                    mainText: 'Emergency',
+                    mainIcon: Icons.add),
+                SizedBox(
+                  height: height * .03,
+                ),
+                CustomDropDown(
+                    maincolor: AppColors.primaryColor,
+                    mainText: 'Organizing Team',
+                    mainIcon: Icons.people_alt_rounded),
+                SizedBox(
+                  height: height * .03,
+                ),
+                CustomDropDown(
+                    maincolor: AppColors.primaryColor,
+                    mainText: 'Point of Contact',
+                    mainIcon: Icons.person),
+              ]),
+            ),
+          ),
+        ));
   }
 }
