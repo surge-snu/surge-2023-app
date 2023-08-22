@@ -217,7 +217,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             fillColor: AppColors.primaryColor,
                             filled: true,
                             hintStyle: TextStyle(color: Color(0xB310100E)),
-                            hintText: 'password',
+                            hintText: 'Password',
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(25),
                                 borderSide: BorderSide.none),
@@ -348,6 +348,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               'assets/blackbg.png',
                               width: width,
                               height: height * .5,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            top: height * 0.31,
+                            child: Image.asset(
+                              'assets/appbarback.png',
+                              width: width,
+                              height: height * .2,
                               fit: BoxFit.cover,
                             ),
                           ),
