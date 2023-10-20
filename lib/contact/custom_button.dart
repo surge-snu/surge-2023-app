@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_utils/get_utils.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:surge_2023_app/Global%20Variables/Constants.dart';
 
 class CustomDropDown extends StatefulWidget {
@@ -21,6 +22,8 @@ class _CustomDropDownState extends State<CustomDropDown> {
   bool open = false;
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Center(
       child: Container(
         width: double.infinity,
@@ -58,25 +61,32 @@ class _CustomDropDownState extends State<CustomDropDown> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Icon(
-                            widget.mainIcon,
-                            color: widget.maincolor == AppColors.primaryColor
-                                ? Colors.black
-                                : Colors.white,
-                            size: 35,
-                            weight: 50,
-                          ),
-                          //SizedBox(width: MediaQuery.sizeOf(context).width*0.03),
-                          Text(
-                            widget.mainText,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
+                          Row(
+                            children: [
+                              Icon(
+                                widget.mainIcon,
                                 color:
                                     widget.maincolor == AppColors.primaryColor
                                         ? Colors.black
+                                        : Colors.white,
+                                size: 35,
+                                weight: 50,
+                              ),
+                              SizedBox(
+                                  width:
+                                      MediaQuery.sizeOf(context).width * 0.02),
+                              Text(
+                                widget.mainText,
+                                style: GoogleFonts.poppins(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 20,
+                                    color: widget.maincolor ==
+                                            AppColors.primaryColor
+                                        ? Colors.black
                                         : Colors.white),
-                            textAlign: TextAlign.right,
+                                textAlign: TextAlign.right,
+                              ),
+                            ],
                           ),
 
                           //SizedBox(width: MediaQuery.sizeOf(context).width*0.13),
@@ -94,28 +104,33 @@ class _CustomDropDownState extends State<CustomDropDown> {
                     ),
                     if (open)
                       Container(
-                        padding: EdgeInsets.only(top: 14),
+                        padding: EdgeInsets.only(
+                            top: height * 0.015,
+                            left: width * 0.1,
+                            right: width * 0.04),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                         ),
                         child: Column(
                           children: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   'Ambulance Service',
-                                  style: TextStyle(
+                                  style: GoogleFonts.poppins(
                                       color: AppColors.primaryColor,
-                                      fontSize: 25,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.w700),
                                 ),
                                 SizedBox(
-                                  width: 15,
+                                  width: width * 0.03,
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 7, right: 7),
-                                  width: 80,
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.025,
+                                      right: width * 0.025),
+                                  width: width * 0.2,
                                   decoration: BoxDecoration(
                                       color: AppColors.primaryColor,
                                       borderRadius: BorderRadius.circular(15)),
@@ -126,14 +141,14 @@ class _CustomDropDownState extends State<CustomDropDown> {
                                       Icon(
                                         Icons.call,
                                         color: Colors.black,
-                                        size: 24,
+                                        size: 20,
                                       ),
                                       Text(
                                         'Call',
-                                        style: TextStyle(
+                                        style: GoogleFonts.poppins(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 20),
+                                            fontSize: 16),
                                       )
                                     ],
                                   ),
@@ -144,21 +159,23 @@ class _CustomDropDownState extends State<CustomDropDown> {
                               height: 13,
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Ambulance Service',
-                                  style: TextStyle(
+                                  'Security',
+                                  style: GoogleFonts.poppins(
                                       color: AppColors.primaryColor,
-                                      fontSize: 25,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.w700),
                                 ),
                                 SizedBox(
-                                  width: 15,
+                                  width: width * 0.03,
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 7, right: 7),
-                                  width: 80,
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.025,
+                                      right: width * 0.025),
+                                  width: width * 0.2,
                                   decoration: BoxDecoration(
                                       color: AppColors.primaryColor,
                                       borderRadius: BorderRadius.circular(15)),
@@ -169,14 +186,14 @@ class _CustomDropDownState extends State<CustomDropDown> {
                                       Icon(
                                         Icons.call,
                                         color: Colors.black,
-                                        size: 24,
+                                        size: 20,
                                       ),
                                       Text(
                                         'Call',
-                                        style: TextStyle(
+                                        style: GoogleFonts.poppins(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 20),
+                                            fontSize: 16),
                                       )
                                     ],
                                   ),
@@ -187,21 +204,23 @@ class _CustomDropDownState extends State<CustomDropDown> {
                               height: 13,
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'Ambulance Service',
-                                  style: TextStyle(
+                                  'Lost & Found',
+                                  style: GoogleFonts.poppins(
                                       color: AppColors.primaryColor,
-                                      fontSize: 25,
+                                      fontSize: 18,
                                       fontWeight: FontWeight.w700),
                                 ),
                                 SizedBox(
-                                  width: 15,
+                                  width: width * 0.03,
                                 ),
                                 Container(
-                                  padding: EdgeInsets.only(left: 7, right: 7),
-                                  width: 80,
+                                  padding: EdgeInsets.only(
+                                      left: width * 0.025,
+                                      right: width * 0.025),
+                                  width: width * 0.2,
                                   decoration: BoxDecoration(
                                       color: AppColors.primaryColor,
                                       borderRadius: BorderRadius.circular(15)),
@@ -212,14 +231,14 @@ class _CustomDropDownState extends State<CustomDropDown> {
                                       Icon(
                                         Icons.call,
                                         color: Colors.black,
-                                        size: 24,
+                                        size: 20,
                                       ),
                                       Text(
                                         'Call',
-                                        style: TextStyle(
+                                        style: GoogleFonts.poppins(
                                             color: Colors.black,
                                             fontWeight: FontWeight.w700,
-                                            fontSize: 20),
+                                            fontSize: 16),
                                       )
                                     ],
                                   ),

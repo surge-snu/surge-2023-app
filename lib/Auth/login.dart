@@ -23,17 +23,16 @@ class _LoginScreenState extends State<LoginScreen> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  late FToast  flutterToast;
+  late FToast flutterToast;
 
   bool loading = false;
   @override
   void initState() {
     super.initState();
-    flutterToast= FToast();
+    flutterToast = FToast();
     // if you want to use context from globally instead of content we need to pass navigatorKey.currentContext!
     flutterToast.init(context);
   }
-
 
   _showToast(String s) {
     Widget toast = Container(
@@ -42,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
         borderRadius: BorderRadius.circular(25.0),
         color: Colors.greenAccent,
       ),
-      child:Row(
+      child: Row(
         children: [
           Icon(Icons.mail),
           SizedBox(width: 6.0),
@@ -63,9 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ],
       ),
-
     );
-
 
     flutterToast.showToast(
       child: toast,
@@ -94,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Future<void> loginUser() async {
     try {
       setState(() {
-        loading= true;
+        loading = true;
       });
       UserCredential userCredential = await _auth.signInWithEmailAndPassword(
         email: _emailController.text, // Use email as the username
@@ -106,204 +103,280 @@ class _LoginScreenState extends State<LoginScreen> {
         // Successfully logged in and email is verified
         setLoggedIn();
 
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => NavBar(passedIndex: 0)));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => NavBar(passedIndex: 0)));
         setState(() {
-          loading= false;
+          loading = false;
         });
       } else {
         // Email is not verified
 
         _showToast("Please verify your email before logging in.");
         setState(() {
-          loading= false;
+          loading = false;
         });
       }
-
     } catch (e) {
       print("Error during login: $e");
       _showToast("Login failed. Please check your credentials.");
       setState(() {
-        loading= false;
+        loading = false;
       });
-
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    return   Scaffold(
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      body: loading?Center(
-        child: Container(
-          padding: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height * 0.1),
-          child: const CircularProgressIndicator(
-            color:Colors.black
-          ),
-        ),
-      ):SingleChildScrollView(
-        physics: NeverScrollableScrollPhysics(),
-        child: Center(
-          child: Column(
-            children: [
-
-              SizedBox(height: 90,),
-              Container(height: 60,width: 360,
-
+      body: loading
+          ? Center(
+              child: Container(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * 0.1),
+                child: const CircularProgressIndicator(color: Colors.black),
+              ),
+            )
+          : SingleChildScrollView(
+              physics: NeverScrollableScrollPhysics(),
               child: Center(
-                child: Text("Login",style: TextStyle(color: Colors.black,fontSize: 30,fontWeight: FontWeight.w900,fontFamily: 'Poppins'),),
-              ),),
-              SizedBox(height: 45,),
-
-              // Email Field
-              Container(
-                margin: EdgeInsets.only(left: 55,right: 55),
-                height: 40,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  border: Border.all(
-                    width: 2,
-                      color: Colors.black),
-                  borderRadius:
-                  BorderRadius.circular(25),
-
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: TextFormField(
-
-                    controller: _emailController,
-
-
-
-                    textAlign: TextAlign.left,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 10),
-                      fillColor: AppColors.primaryColor,
-                      filled: true,
-                      // errorStyle: TextStyle(height: 0.5),
-                      hintStyle: TextStyle(color: Color(0xB310100E)),
-                      hintText: 'Email',
-                      border: OutlineInputBorder(
-                          borderRadius:
-                          BorderRadius.circular(25),
-                          borderSide:  BorderSide.none
-
+                child: Column(
+                  children: [
+                    SizedBox(height: height * .07),
+                    Container(
+                      height: 60,
+                      width: 360,
+                      child: const Center(
+                        child: Text(
+                          "Login",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 30,
+                              fontWeight: FontWeight.w900,
+                              fontFamily: 'Poppins'),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-SizedBox(height: 35,),
+                    SizedBox(
+                      height: height * .005,
+                    ),
 
-              // Password Text Field
-              Container(
-                margin: EdgeInsets.only(left: 55,right: 55),
-                height: 40,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor,
-                  border: Border.all(
-                    width: 2,
-                      color: Colors.black),
-                  borderRadius:
-                  BorderRadius.circular(25),
-
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: TextFormField(
-
-                    controller: _passwordController,
-
-
-
-                    textAlign: TextAlign.left,
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsets.symmetric(vertical: 10),
-                      fillColor: AppColors.primaryColor,
-                      filled: true,
-
-                      hintStyle: TextStyle(color: Color(0xB310100E)),
-                      hintText: 'password',
-                      border: OutlineInputBorder(
-                          borderRadius:
-                          BorderRadius.circular(25),
-                          borderSide:  BorderSide.none
-
+                    // Email Field
+                    Container(
+                      margin: EdgeInsets.only(left: 55, right: 55),
+                      height: 40,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        border: Border.all(width: 2, color: Colors.black),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 18.0),
+                        child: TextFormField(
+                          controller: _emailController,
+                          textAlign: TextAlign.left,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            fillColor: AppColors.primaryColor,
+                            filled: true,
+                            // errorStyle: TextStyle(height: 0.5),
+                            hintStyle: TextStyle(color: Color(0xB310100E)),
+                            hintText: 'Email',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide.none),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 35,),
+                    SizedBox(
+                      height: height * .02,
+                    ),
+
+                    // Password Text Field
+                    Container(
+                      margin: EdgeInsets.only(left: 55, right: 55),
+                      height: 40,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryColor,
+                        border: Border.all(width: 2, color: Colors.black),
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 18.0),
+                        child: TextFormField(
+                          controller: _passwordController,
+                          textAlign: TextAlign.left,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(vertical: 10),
+                            fillColor: AppColors.primaryColor,
+                            filled: true,
+                            hintStyle: TextStyle(color: Color(0xB310100E)),
+                            hintText: 'Password',
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(25),
+                                borderSide: BorderSide.none),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * .012,
+                    ),
 
 // Login Button
-              InkWell(
-                onTap: (){
-loginUser();
-                },
-                child: Container(
-                  margin: EdgeInsets.only(left: 55,right: 55),
-                  height: 40,
-                  width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
-
-                      borderRadius:
-                      BorderRadius.circular(25),
-
+                    InkWell(
+                      onTap: () {
+                        loginUser();
+                      },
+                      child: Container(
+                        margin: EdgeInsets.only(left: 55, right: 55),
+                        height: 40,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Log In",
+                            style: GoogleFonts.poppins(
+                              textStyle: const TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                  child: Center(child: Text("Log In",style: GoogleFonts.poppins(textStyle: TextStyle(decoration:TextDecoration.underline
-                      ,color: AppColors.primaryColor,fontSize: 20,fontWeight: FontWeight.w400)))),
-
+                    SizedBox(
+                      height: height * .007,
+                    ),
+                    // Change Password  Button
+                    InkWell(
+                      onTap: () {
+                        Get.to(() => ChangePassword());
+                      },
+                      child: Text(
+                        "Forgot password?",
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Colors.black,
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                      // child: Container(
+                      //   margin: EdgeInsets.only(left: 55, right: 55),
+                      //   height: 40,
+                      //   width: double.infinity,
+                      //   decoration: BoxDecoration(
+                      //     color: Colors.black,
+                      //     borderRadius: BorderRadius.circular(25),
+                      //   ),
+                      //   child: Center(
+                      //     child: Text(
+                      //       "Forgot Password?",
+                      //       style: GoogleFonts.poppins(
+                      //         textStyle: const TextStyle(
+                      //             decoration: TextDecoration.underline,
+                      //             color: AppColors.primaryColor,
+                      //             fontSize: 20,
+                      //             fontWeight: FontWeight.w400),
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+                    ),
+                    SizedBox(
+                      height: height * .04,
+                    ),
+                    //Sign Up Button
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (_) => SignUpScreen()));
+                      },
+                      child: Text(
+                        "Sign-Up",
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: height * .01,
+                    ),
+                    // Continue as guest button
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => NavBar(passedIndex: 0)));
+                      },
+                      child: Text(
+                        "Continue as guest",
+                        style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                              decoration: TextDecoration.underline,
+                              color: Colors.black,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w400),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: height * 1,
+                      width: width,
+                      child: Stack(
+                        children: [
+                          Positioned(
+                            top: height * 0.31,
+                            child: Image.asset(
+                              'assets/blackbg.png',
+                              width: width,
+                              height: height * .5,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            top: height * 0.31,
+                            child: Image.asset(
+                              'assets/appbarback.png',
+                              width: width,
+                              height: height * .2,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Positioned(
+                            top: height * .015,
+                            left: width * 0.07,
+                            child: Image.asset(
+                              'assets/runner.png',
+                              width: width * 0.9,
+                              height: height * 0.5,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
-              SizedBox(height: 25,),
-              // Change Password  Button
-              InkWell(
-                onTap: (){
-                  Get.to(()=>ChangePassword());
-                },
-                child: Container(
-                  margin: EdgeInsets.only(left: 55,right: 55),
-                  height: 40,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.black,
-
-                    borderRadius:
-                    BorderRadius.circular(25),
-
-                  ),
-                  child: Center(child: Text("Forgot Password",style: GoogleFonts.poppins(textStyle: TextStyle(decoration:TextDecoration.underline
-                      ,color: AppColors.primaryColor,fontSize: 20,fontWeight: FontWeight.w400)))),
-
-                ),
-              ),
-              SizedBox(height: 25,),
-              //Sign Up Button
-              InkWell(
-                  onTap: (){
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>SignUpScreen()));
-                  },
-                  child: Text("SignUp",style: GoogleFonts.poppins(textStyle: TextStyle(decoration:TextDecoration.underline,color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400)))),
-              SizedBox(height: 25,),
-              // Continue as guest button
-              InkWell(
-                  onTap: (){
-Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>NavBar(passedIndex: 0)));
-                  },
-                  child: Text("Continue as guest",style: GoogleFonts.poppins(textStyle: TextStyle(decoration:TextDecoration.underline,color: Colors.black,fontSize: 20,fontWeight: FontWeight.w400)))),
-
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }
