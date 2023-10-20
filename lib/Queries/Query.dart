@@ -15,7 +15,7 @@ class Query extends StatefulWidget {
 }
 
 class _QueryState extends State<Query> {
-  List<String> items = ['Sports', 'Option 2', 'Option 3', 'Option 4'];
+  List<String> items = ['Sports', 'Emergency', 'Complaint', 'Accomodation','Registration','General'];
   String selectedValue = 'Sports'; // Set an initial value
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   bool loading = false;
@@ -24,6 +24,7 @@ class _QueryState extends State<Query> {
   final TextEditingController _descriptionController = TextEditingController();
   bool open = false;
   late FToast flutterToast;
+  @override
   void initState() {
     super.initState();
     flutterToast = FToast();
@@ -40,18 +41,18 @@ class _QueryState extends State<Query> {
       ),
       child: Row(
         children: [
-          Icon(Icons.done),
-          SizedBox(width: 6.0),
+          const Icon(Icons.done),
+          const SizedBox(width: 6.0),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width, // Adjust as needed
                   child: Text(
                     s, // Your text here
                     maxLines: 5,
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                   ),
                 ),
               ],
@@ -64,23 +65,23 @@ class _QueryState extends State<Query> {
     flutterToast.showToast(
       child: toast,
       gravity: ToastGravity.BOTTOM,
-      toastDuration: Duration(seconds: 5),
+      toastDuration: const Duration(seconds: 5),
     );
 
     // Custom Toast Position
     flutterToast.showToast(
         child: toast,
-        toastDuration: Duration(seconds: 5),
+        toastDuration: const Duration(seconds: 5),
         positionedToastBuilder: (context, child) {
           return Positioned(
-            child: child,
             top: 16.0,
             left: 16.0,
+            child: child,
           );
         });
   }
 
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // getting current user info
 
@@ -88,9 +89,6 @@ class _QueryState extends State<Query> {
     if (_auth.currentUser != null) {
       uid = _auth.currentUser!.uid;
       email = _auth.currentUser!.email;
-
-      print("UID: $uid");
-      print("Email: $email");
     } else {
       email = "";
       uid = "";
@@ -115,7 +113,8 @@ class _QueryState extends State<Query> {
 
         _descriptionController.clear();
         _showToast(
-            "Your Query Has Been Submitted. We will get back to you soon.");
+          "Your Query Has Been Submitted. We will get back to you soon.",
+        );
       }
     } else {
       _showToast("Please Login to Submit Your Query");
@@ -132,11 +131,11 @@ class _QueryState extends State<Query> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: PreferredSize(
-        child: CustomAppBar(
-          heading: "Query",
-        ),
         preferredSize: Size(MediaQuery.sizeOf(context).width,
             MediaQuery.sizeOf(context).height * 0.15),
+        child: const CustomAppBar(
+          heading: "Query",
+        ),
       ),
       body: loading
           ? Center(
@@ -149,7 +148,7 @@ class _QueryState extends State<Query> {
               ),
             )
           : SingleChildScrollView(
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               child: Container(
                   height: MediaQuery.sizeOf(context).height * 0.78,
                   color: Colors.black,
@@ -193,7 +192,8 @@ class _QueryState extends State<Query> {
                           ),
                           hint: Text(
                             selectedValue,
-                            style: TextStyle(color: Colors.white, fontSize: 14),
+                            style: const TextStyle(
+                                color: Colors.white, fontSize: 14),
                           ),
                           value: selectedValue,
                           items: items
@@ -226,9 +226,9 @@ class _QueryState extends State<Query> {
                                 width: 1,
                               ),
                             ),
-                            padding: EdgeInsets.only(right: 8),
+                            padding: const EdgeInsets.only(right: 8),
                           ),
-                          dropdownStyleData: DropdownStyleData(
+                          dropdownStyleData: const DropdownStyleData(
                               decoration: BoxDecoration(color: Colors.black)),
                           iconStyleData: const IconStyleData(
                             icon: Icon(Icons.arrow_drop_down,
@@ -236,7 +236,8 @@ class _QueryState extends State<Query> {
                             iconSize: 24,
                           ),
                           menuItemStyleData: MenuItemStyleData(
-                              padding: EdgeInsets.symmetric(horizontal: 16),
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
                               overlayColor:
                                   MaterialStateProperty.all(Colors.black)),
                         ),

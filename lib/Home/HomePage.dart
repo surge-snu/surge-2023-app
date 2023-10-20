@@ -1,5 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:surge_2023_app/Home/sponsorAnimation.dart';
 
 import '../Global Variables/Constants.dart';
 
@@ -13,155 +13,101 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Map<String, dynamic>> dataList = [
     {
-      'name': 'John',
-      'title': 'Engineer',
-      'score': 85,
+      'asset': 'assets/sponsors/atiumSports.png',
     },
     {
-      'name': 'Alice',
-      'title': 'Designer',
-      'score': 90,
+      'asset': 'assets/sponsors/boat.png',
     },
     {
-      'name': 'Bob',
-      'title': 'Developer',
-      'score': 78,
+      'asset': 'assets/sponsors/careerLauncher.png',
+    },
+    {
+      'asset': 'assets/sponsors/dassaultSystems.png',
+    },
+    {
+      'asset': 'assets/sponsors/fisto.png',
+    },
+    {
+      'asset': 'assets/sponsors/fujifilm.png',
+    },
+    {
+      'asset': 'assets/sponsors/levo.png',
+    },
+    {
+      'asset': 'assets/sponsors/redbull.png',
+    },
+    {
+      'asset': 'assets/sponsors/snuxplore.png',
+    },
+    {
+      'asset': 'assets/sponsors/spawnPoint.png',
+    },
+    {
+      'asset': 'assets/sponsors/stag.png',
+    },
+    {
+      'asset': 'assets/sponsors/turtlePic.png',
     },
     // Add more entries here as needed
   ];
 
-
-
   @override
   Widget build(BuildContext context) {
-    final ScrollController _scrollController = ScrollController();
+    final ScrollController scrollController = ScrollController();
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: SafeArea(
-        child: Center(
-          child: Container(
-            color: Colors.black,
-            child: Padding(
-              padding: EdgeInsets.only(left: 8.0,right: 8.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    'assets/ISC.png',
-                    height: MediaQuery.sizeOf(context).height*0.2,
-                    width: 600,
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
-                  const Text(
-                    'Recent Updates',
-                    style: TextStyle(
-                      color: AppColors.primaryColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 25,
+        backgroundColor: Colors.black,
+        body: SafeArea(
+          child: Center(
+            child: Container(
+              color: Colors.black,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/ISC.png',
+                      height: MediaQuery.sizeOf(context).height * 0.2,
+                      width: 600,
                     ),
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-               Stack(
-                 children: [
-                   Container(
-                     height:  MediaQuery.of(context).size.height*0.265,
-                    width:   MediaQuery.of(context).size.width,
-                     child: ListView.builder(
-                       controller: _scrollController,
-                       scrollDirection: Axis.horizontal,
-
-    shrinkWrap:  true,
-    itemCount:11, itemBuilder: (con, index){
-        return Padding(
-          padding: const EdgeInsets.only(left:6,right: 6),
-          child: Container(
-          height: MediaQuery.of(context).size.height*0.1,
-          width: MediaQuery.of(context).size.width*0.38,
-    decoration: BoxDecoration(
-        color: Colors.white10,
-        borderRadius: BorderRadius.circular(15),
-        border:  Border.all(
-          color: AppColors.primaryColor,
-          width: 2
-        )
-    ),
-child: Padding(
-
-  padding: const EdgeInsets.only(left: 10.0,top: 10),
-  child:   Column(
-mainAxisAlignment: MainAxisAlignment.start,
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-
-        Text('Cricket',style: TextStyle(
-            color: AppColors.primaryColor,fontWeight: FontWeight.w700,fontSize: 16,fontStyle: FontStyle.italic),),
-         SizedBox(height: MediaQuery.sizeOf(context).height*0.03,),
-        Text('Shiv Nadar University',style: TextStyle(
-            color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12,),),
-        SizedBox(height: MediaQuery.sizeOf(context).height*0.007,),
-        Text('147-10',style: TextStyle(
-          color: Colors.white,fontWeight: FontWeight.w700,fontSize: 14,),),
-        SizedBox(height: MediaQuery.sizeOf(context).height*0.005,),
-        Text('20 .0',style: TextStyle(
-          color: Colors.white,fontWeight: FontWeight.w400,fontSize: 9,),),
-
-        SizedBox(height: MediaQuery.sizeOf(context).height*0.03,),
-        Text('Ashoka University',style: TextStyle(
-          color: Colors.white,fontWeight: FontWeight.w400,fontSize: 12,),),
-        SizedBox(height: MediaQuery.sizeOf(context).height*0.007,),
-        Text('147-10',style: TextStyle(
-          color: Colors.white,fontWeight: FontWeight.w700,fontSize: 14,),),
-        SizedBox(height: MediaQuery.sizeOf(context).height*0.005,),
-        Text('20 .0',style: TextStyle(
-          color: Colors.white,fontWeight: FontWeight.w400,fontSize: 9,),),
-    ],
-
-  ),
-),
-          ),
-        );
-
-                     },
-
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.01),
+                    SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
+                    const Text(
+                      'Our Sponsors',
+                      style: TextStyle(
+                        color: AppColors.primaryColor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 25,
+                      ),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.sizeOf(context).height * 0.55,
+                      child: GridView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        padding: const EdgeInsets.all(10.0),
+                        itemCount: dataList.length,
+                        controller: scrollController,
+                        itemBuilder: (ctx, i) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Image.asset(dataList[i]['asset']),
+                          );
+                        },
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: MediaQuery.of(context).size.width /
+                              (MediaQuery.of(context).size.height / 2.5),
+                          crossAxisSpacing: 4,
+                          mainAxisSpacing: 4,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
-                   ),
-
-                   Positioned(
-                     left: MediaQuery.sizeOf(context).width*0.85,
-                     top: MediaQuery.sizeOf(context).width*0.19,
-                     child: IconButton(
-                       icon: Icon(Icons.arrow_forward_ios,color: AppColors.primaryColor,size: 40,),
-                       onPressed: () {
-                         _scrollController.animateTo(
-                           _scrollController.offset + 100, // You can adjust the scroll distance here
-                           curve: Curves.easeInOut,
-                           duration: Duration(milliseconds: 200),
-                         );
-                       },
-                     ),
-                   ),
-                 ],
-               ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                  const Text(
-                    'Our Sponsors',
-                    style: TextStyle(
-                      color: AppColors.primaryColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 25,
-                    ),
-                  ),
-                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.02),
-                  SponsorsAnimation()
-              ]
             ),
           ),
-        ),
-    ),
-      )
-    );
-
+        ));
   }
 }
-

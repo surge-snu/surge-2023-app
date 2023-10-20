@@ -48,13 +48,13 @@ class _ProfileState extends State<Profile> {
       ),
       child: Row(
         children: [
-          Icon(Icons.mail),
-          SizedBox(width: 6.0),
+          const Icon(Icons.mail),
+          const SizedBox(width: 6.0),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width, // Adjust as needed
                   child: Text(
                     s, // Your text here
@@ -72,18 +72,18 @@ class _ProfileState extends State<Profile> {
     flutterToast.showToast(
       child: toast,
       gravity: ToastGravity.BOTTOM,
-      toastDuration: Duration(seconds: 5),
+      toastDuration: const Duration(seconds: 5),
     );
 
     // Custom Toast Position
     flutterToast.showToast(
         child: toast,
-        toastDuration: Duration(seconds: 5),
+        toastDuration: const Duration(seconds: 5),
         positionedToastBuilder: (context, child) {
           return Positioned(
-            child: child,
             top: 16.0,
             left: 16.0,
+            child: child,
           );
         });
   }
@@ -138,7 +138,7 @@ class _ProfileState extends State<Profile> {
       prefs.setBool('LogedIn', false);
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
         (route) => false, // Remove all routes until now.
       );
     });
@@ -165,52 +165,51 @@ class _ProfileState extends State<Profile> {
                   right: 0,
                   top: 2,
                   child: Stack(children: [
-                    Container(
-                      //  height: MediaQuery.sizeOf(context).height*0.3,
-                      child: Stack(
-                        children: [
-                          Column(
-                            children: [
-                              Image.asset('assets/appbarback.png'),
-                              Image.asset('assets/profile_bar.png'),
-                            ],
-                          ),
-                          Positioned(
-                              left: 10,
-                              top: 40,
-                              child: Row(
-                                children: [
-                                  InkWell(
-                                      onTap: () {
-                                        print('navigating');
+                    Stack(
+                      children: [
+                        Column(
+                          children: [
+                            Image.asset('assets/appbarback.png'),
+                            Image.asset('assets/profile_bar.png'),
+                          ],
+                        ),
+                        Positioned(
+                            left: 10,
+                            top: 40,
+                            child: Row(
+                              children: [
+                                InkWell(
+                                    onTap: () {
+                                      print('navigating');
 
-                                        Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (c) =>
-                                                    NavBar(passedIndex: 0)));
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (c) =>
+                                              NavBar(passedIndex: 0),
+                                        ),
+                                      );
 
-                                        print('navigated');
-                                      },
-                                      child: Icon(
-                                        Icons.keyboard_arrow_left_rounded,
-                                        color: AppColors.primaryColor,
-                                        size: 45,
-                                      )),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  Text(
-                                    'Profile',
-                                    style: GoogleFonts.poppins(
-                                        color: AppColors.primaryColor,
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.w700),
-                                  )
-                                ],
-                              ))
-                        ],
-                      ),
+                                      print('navigated');
+                                    },
+                                    child: const Icon(
+                                      Icons.keyboard_arrow_left_rounded,
+                                      color: AppColors.primaryColor,
+                                      size: 45,
+                                    )),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  'Profile',
+                                  style: GoogleFonts.poppins(
+                                      color: AppColors.primaryColor,
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.w700),
+                                )
+                              ],
+                            ))
+                      ],
                     ),
                   ]),
                 ),
@@ -231,6 +230,7 @@ class _ProfileState extends State<Profile> {
                         ),
                       ),
                     ),
+                    child: Image.asset('assets/user.png'),
                   ),
                 ),
                 Positioned(
@@ -261,40 +261,6 @@ class _ProfileState extends State<Profile> {
                             ),
                             SizedBox(
                               height: MediaQuery.sizeOf(context).height * 0.04,
-                            ),
-                            Text(
-                              'Payment Status',
-                              style: GoogleFonts.poppins(
-                                  color: AppColors.primaryColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 25),
-                            ),
-                            // SizedBox(
-                            //   height: MediaQuery.sizeOf(context).height * 0.01,
-                            // ),
-                            Text(
-                              'Under Process',
-                              style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 23),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.sizeOf(context).height * 0.02,
-                            ),
-                            Text(
-                              'Accomodation',
-                              style: GoogleFonts.poppins(
-                                  color: AppColors.primaryColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 25),
-                            ),
-                            Text(
-                              '3 Nights',
-                              style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 23),
                             ),
                             SizedBox(
                               height: MediaQuery.sizeOf(context).height * 0.1,

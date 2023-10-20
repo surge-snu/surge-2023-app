@@ -48,7 +48,7 @@ class _MapExploreState extends State<MapExplore> {
                 color: AppColors.primaryColor,
                 borderRadius: BorderRadius.circular(15)
             ),
-            child: Center(child: Text('Snu Explore',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 14),)),
+            child: const Center(child: Text('SnuXplore',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w700,fontSize: 14),)),
           ),
         ),
       ),
