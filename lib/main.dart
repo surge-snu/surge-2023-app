@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       builder: FToastBuilder(),
 
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Surge 2023',
 
         // This is the theme of your application.
 
