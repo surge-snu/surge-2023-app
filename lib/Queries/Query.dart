@@ -109,6 +109,7 @@ class _QueryState extends State<Query> {
           'email': email,
           'category': category,
           'description': description,
+          'isResolved' : false,
         });
 
         _descriptionController.clear();
