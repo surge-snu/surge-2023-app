@@ -16,7 +16,9 @@ class CustomDropDown extends StatefulWidget {
   final String? name3;
   final String? name2;
   final String? con1;
-
+  final String sub1;
+  final String? sub2;
+  final String sub3;
   final String? con2;
   final String? con3;
   const CustomDropDown({
@@ -30,6 +32,9 @@ class CustomDropDown extends StatefulWidget {
     this.con2,
     required this.con3,
     this.name2,
+    required this.sub1,
+    this.sub2,
+    required this.sub3,
   }) : super(key: key);
 
   @override
@@ -146,12 +151,27 @@ class _CustomDropDownState extends State<CustomDropDown> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    widget.name1!,
-                                    style: GoogleFonts.poppins(
-                                        color: AppColors.primaryColor,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        widget.name1!,
+                                        style: GoogleFonts.poppins(
+                                            color: AppColors.primaryColor,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      Text(
+                                        widget.sub1,
+                                        style: GoogleFonts.poppins(
+                                          color: AppColors.primaryColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      )
+                                    ],
                                   ),
                                   InkWell(
                                     onTap: () {
@@ -191,52 +211,72 @@ class _CustomDropDownState extends State<CustomDropDown> {
                               const SizedBox(
                                 height: 13,
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    widget.name2!,
-                                    style: GoogleFonts.poppins(
-                                        color: AppColors.primaryColor,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                  InkWell(
-                                    onTap: () {
-                                      _launchPhoneDialer(widget.con2!);
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.only(
-                                          left: width * 0.025,
-                                          right: width * 0.025),
-                                      width: width * 0.2,
-                                      decoration: BoxDecoration(
-                                          color: AppColors.primaryColor,
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          const Icon(
-                                            Icons.call,
-                                            color: Colors.black,
-                                            size: 20,
+                              (widget.name2 != null
+                                  ? Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              widget.name2!,
+                                              style: GoogleFonts.poppins(
+                                                  color: AppColors.primaryColor,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                            Text(
+                                              widget.sub2!,
+                                              style: GoogleFonts.poppins(
+                                                color: AppColors.primaryColor,
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            _launchPhoneDialer(widget.con2!);
+                                          },
+                                          child: Container(
+                                            padding: EdgeInsets.only(
+                                                left: width * 0.025,
+                                                right: width * 0.025),
+                                            width: width * 0.2,
+                                            decoration: BoxDecoration(
+                                                color: AppColors.primaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                const Icon(
+                                                  Icons.call,
+                                                  color: Colors.black,
+                                                  size: 20,
+                                                ),
+                                                Text(
+                                                  'Call',
+                                                  style: GoogleFonts.poppins(
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      fontSize: 16),
+                                                )
+                                              ],
+                                            ),
                                           ),
-                                          Text(
-                                            'Call',
-                                            style: GoogleFonts.poppins(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 16),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                        )
+                                      ],
+                                    )
+                                  : Container()),
                               const SizedBox(
                                 height: 13,
                               ),
@@ -244,12 +284,27 @@ class _CustomDropDownState extends State<CustomDropDown> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    widget.name3!,
-                                    style: GoogleFonts.poppins(
-                                        color: AppColors.primaryColor,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w700),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        widget.name3!,
+                                        style: GoogleFonts.poppins(
+                                            color: AppColors.primaryColor,
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      Text(
+                                        widget.sub3,
+                                        style: GoogleFonts.poppins(
+                                          color: AppColors.primaryColor,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      )
+                                    ],
                                   ),
                                   InkWell(
                                     onTap: () {
