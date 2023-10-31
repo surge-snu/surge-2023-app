@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:surge_2023_app/Global%20Variables/Constants.dart';
 import 'package:surge_2023_app/Utils/CustomAppbar.dart';
+import 'package:uuid/uuid.dart';
 
 class Query extends StatefulWidget {
   const Query({Key? key}) : super(key: key);
@@ -15,7 +16,14 @@ class Query extends StatefulWidget {
 }
 
 class _QueryState extends State<Query> {
-  List<String> items = ['Sports', 'Emergency', 'Complaint', 'Accomodation','Registration','General'];
+  List<String> items = [
+    'Sports',
+    'Emergency',
+    'Complaint',
+    'Accomodation',
+    'Registration',
+    'General'
+  ];
   String selectedValue = 'Sports'; // Set an initial value
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   bool loading = false;
@@ -101,15 +109,17 @@ class _QueryState extends State<Query> {
       loading = true;
     });
     getUserInfo();
+    var uuid = const Uuid();
+    var id = uuid.v4();
     String category = selectedValue;
     String description = _descriptionController.text;
     if (uid != "" && email != "") {
       if (category.isNotEmpty && description.isNotEmpty) {
-        _firestore.collection('Queries').doc(uid).set({
+        _firestore.collection('Queries').doc(id).set({
           'email': email,
           'category': category,
           'description': description,
-          'isResolved' : false,
+          'isResolved': false,
         });
 
         _descriptionController.clear();
